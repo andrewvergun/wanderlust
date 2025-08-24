@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:wanderlust/common/widgets/header.dart';
-import 'package:wanderlust/common/widgets/sidebar.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-  static const String path = 'home';
+import '../../../common/widgets/header.dart';
+import '../../../common/widgets/sidebar.dart';
+import '../widgets/interactive_map.dart';
+
+class InteractiveMapPage extends StatelessWidget {
+  const InteractiveMapPage({super.key});
+
+  static const String path = 'interactive_map';
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +25,17 @@ class HomePage extends StatelessWidget {
           SafeArea(
             child: ListView(
               children: [
-                Header(isHeaderMin: false),
+                Header(isHeaderMin: true, title: 'Interactive map'),
+                SizedBox(height: 26),
+                InteractiveMap(),
               ],
             ),
           ),
         ],
       ),
 
-        
-      
-    );
+
+
+    );;
   }
 }

@@ -4,9 +4,21 @@ import 'package:flutter_svg/svg.dart';
 import '../../config/theme/theme.dart';
 
 class HeaderButton extends StatelessWidget {
-  const HeaderButton({super.key, required this.onPressed, required this.buttonIcon,required this.buttonIconWidth,required this.buttonIconHeight, required this.buttonText});
+  const HeaderButton({
+    super.key,
+    required this.onPressed,
+    required this.width,
+    required this.height,
+    required this.buttonIcon,
+    required this.buttonIconWidth,
+    required this.buttonIconHeight,
+    required this.buttonText,
+  });
+
   final VoidCallback onPressed;
   final String buttonIcon;
+  final double width;
+  final double height;
   final double buttonIconWidth;
   final double buttonIconHeight;
   final String buttonText;
@@ -21,11 +33,9 @@ class HeaderButton extends StatelessWidget {
         backgroundColor: AppTheme.buttonColor,
         iconColor: AppTheme.buttonTextColor,
         textStyle: TextStyle(color: AppTheme.buttonTextColor),
-        fixedSize: Size(144, 78),
+        fixedSize: Size(width, height),
 
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -47,10 +57,8 @@ class HeaderButton extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-
         ],
       ),
     );
-
   }
 }
