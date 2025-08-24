@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/widgets/header.dart';
-import '../../../common/widgets/sidebar.dart';
+import '../../../../common/widgets/header.dart';
+import '../../../../common/widgets/sidebar.dart';
 import '../widgets/interactive_map.dart';
 
 class InteractiveMapPage extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wanderlust/features/about_page/presentation/pages/about_page.dart';
-import 'package:wanderlust/features/interactive_map_page/pages/interactive_map_page.dart';
+import 'package:wanderlust/features/interactive_map_page/presentation/pages/interactive_map_page.dart';
 import '../../config/theme/theme.dart';
 import '../../features/home_page/presentation/pages/home_page.dart';
 import '../widgets/header_button.dart';
