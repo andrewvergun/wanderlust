@@ -4,8 +4,8 @@ import '../../../../config/theme/theme.dart';
 import '../../data/models/location_data.dart';
 
 class InteractiveMap extends StatefulWidget {
-  const InteractiveMap({super.key});
-
+  const InteractiveMap({super.key, required this.mapHeight});
+  final double mapHeight;
   @override
   State<InteractiveMap> createState() => _InteractiveMapState();
 }
@@ -13,6 +13,7 @@ class InteractiveMap extends StatefulWidget {
 class _InteractiveMapState extends State<InteractiveMap> {
   GoogleMapController? mapController;
   Set<Marker> markers = {};
+  double zoom = 5.5;
   LocationData? selectedLocation;
   bool showLocationDetails = false;
 
@@ -23,8 +24,15 @@ class _InteractiveMapState extends State<InteractiveMap> {
   }
 
 
-
   Future<void> _createMarkers() async {
+    final BitmapDescriptor customIcon = await BitmapDescriptor.asset(
+      const ImageConfiguration(),
+      "assets/images/marker.png",
+    );
+
+
+
+
     setState(() {
       markers.clear();
       for (LocationData location in LocationsData.locations) {
@@ -33,13 +41,19 @@ class _InteractiveMapState extends State<InteractiveMap> {
             markerId: MarkerId(location.id),
             position: location.position,
             onTap: () => _onMarkerTapped(location),
-            icon: BitmapDescriptor.defaultMarker,
+            icon: customIcon,
           ),
         );
       }
     });
   }
 
+  void _onMapCreated(GoogleMapController controller) async {
+    mapController = mapController;
+    final style = await DefaultAssetBundle.of(context)
+        .loadString('assets/map_styles/dark_map.json');
+    controller.setMapStyle(style);
+  }
 
 
   void _onMarkerTapped(LocationData location) {
@@ -47,14 +61,26 @@ class _InteractiveMapState extends State<InteractiveMap> {
       selectedLocation = location;
       showLocationDetails = false;
     });
+
+    mapController?.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: location.position,
+          zoom: 12,
+        ),
+      ),
+    );
   }
+
 
   @override
   Widget build(BuildContext context) {
+
+
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Container(
-        height: 434,
+        height: widget.mapHeight,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(26),
           border: AppTheme.borderGradient,
@@ -62,15 +88,15 @@ class _InteractiveMapState extends State<InteractiveMap> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(26),
           child: GoogleMap(
-
-            initialCameraPosition: const CameraPosition(
-              target: LatLng(51, 10),
-              zoom: 5.5,
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: const LatLng(51, 10),
+              zoom: zoom,
             ),
             markers: markers,
             mapType: MapType.normal,
             myLocationButtonEnabled: false,
-            zoomControlsEnabled: true,
+            zoomControlsEnabled: false,
             onTap: (_) {
               setState(() {
                 showLocationDetails = false;

@@ -27,7 +27,7 @@ class InteractiveMapPage extends StatelessWidget {
               children: [
                 Header(isHeaderMin: true, title: 'Interactive map'),
                 SizedBox(height: 26),
-                InteractiveMap(),
+                InteractiveMap(mapHeight: 434),
               ],
             ),
           ),
