@@ -4,6 +4,7 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 class AppTheme {
   static const Color white = Color(0xFFFFFFFF);
   static const Color containerColor = Color(0xFF00081C);
+  static const Color interactiveMapContainerColor = Color(0xFF0C2037);
   static const Color buttonColor = Color(0xFFFEC501);
   static const Color buttonTextColor = Color(0xFF564300);
   static const Color ellipseGlowColor = Color(0xFFF4D89C);

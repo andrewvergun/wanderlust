@@ -19,7 +19,6 @@ class LocationData {
   });
 }
 
-// Дані локацій
 class LocationsData {
   static const List<LocationData> locations = [
     LocationData(

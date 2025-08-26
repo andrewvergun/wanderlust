@@ -4,8 +4,19 @@ import '../../../../config/theme/theme.dart';
 import '../../data/models/location_data.dart';
 
 class InteractiveMap extends StatefulWidget {
-  const InteractiveMap({super.key, required this.mapHeight});
+  const InteractiveMap({
+    super.key,
+    required this.mapHeight,
+    this.onLocationSelected,
+    this.onMapTapped,
+    this.selectedLocation,
+  });
+
   final double mapHeight;
+  final Function(LocationData)? onLocationSelected;
+  final VoidCallback? onMapTapped;
+  final LocationData? selectedLocation;
+
   @override
   State<InteractiveMap> createState() => _InteractiveMapState();
 }
@@ -14,8 +25,6 @@ class _InteractiveMapState extends State<InteractiveMap> {
   GoogleMapController? mapController;
   Set<Marker> markers = {};
   double zoom = 5.5;
-  LocationData? selectedLocation;
-  bool showLocationDetails = false;
 
   @override
   void initState() {
@@ -23,15 +32,11 @@ class _InteractiveMapState extends State<InteractiveMap> {
     _createMarkers();
   }
 
-
   Future<void> _createMarkers() async {
     final BitmapDescriptor customIcon = await BitmapDescriptor.asset(
       const ImageConfiguration(),
       "assets/images/marker.png",
     );
-
-
-
 
     setState(() {
       markers.clear();
@@ -49,19 +54,14 @@ class _InteractiveMapState extends State<InteractiveMap> {
   }
 
   void _onMapCreated(GoogleMapController controller) async {
-    mapController = mapController;
+    mapController = controller;
     final style = await DefaultAssetBundle.of(context)
         .loadString('assets/map_styles/dark_map.json');
     controller.setMapStyle(style);
   }
 
-
   void _onMarkerTapped(LocationData location) {
-    setState(() {
-      selectedLocation = location;
-      showLocationDetails = false;
-    });
-
+    // Animate camera to the selected location
     mapController?.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
@@ -70,13 +70,13 @@ class _InteractiveMapState extends State<InteractiveMap> {
         ),
       ),
     );
-  }
 
+    // Notify parent widget about the selection
+    widget.onLocationSelected!(location);
+  }
 
   @override
   Widget build(BuildContext context) {
-
-
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Container(
@@ -98,10 +98,7 @@ class _InteractiveMapState extends State<InteractiveMap> {
             myLocationButtonEnabled: false,
             zoomControlsEnabled: false,
             onTap: (_) {
-              setState(() {
-                showLocationDetails = false;
-                selectedLocation = null;
-              });
+              widget.onMapTapped!();
             },
           ),
         ),

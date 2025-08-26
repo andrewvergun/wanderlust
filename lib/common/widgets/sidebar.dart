@@ -4,6 +4,7 @@ import 'package:wanderlust/features/about_page/presentation/pages/about_page.dar
 import 'package:wanderlust/features/interactive_map_page/presentation/pages/interactive_map_page.dart';
 import '../../config/theme/theme.dart';
 import '../../features/home_page/presentation/pages/home_page.dart';
+import '../../features/popular_places_page/presentation/pages/popular_places_page.dart';
 import '../widgets/header_button.dart';
 
 class Sidebar extends StatefulWidget {
@@ -46,7 +47,9 @@ class _SidebarState extends State<Sidebar> {
               routeName: HomePage.path,
               isActive: currentRoute.contains(HomePage.path) || currentRoute == '/',
             ),
-            _buildMenuItem('Popular places'),
+            _buildMenuItem('Popular places',
+              routeName: PopularPlacesPage.path,
+              isActive: currentRoute.contains(PopularPlacesPage.path),),
             _buildMenuItem('Saved places'),
             _buildMenuItem('Interesting facts'),
             _buildMenuItem('Interactive map',
