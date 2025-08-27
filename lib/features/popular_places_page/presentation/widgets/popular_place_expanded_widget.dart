@@ -11,10 +11,14 @@ class PopularPlaceExpandedWidget extends StatefulWidget {
   final LocationData location;
 
   @override
-  State<PopularPlaceExpandedWidget> createState() => _PopularPlaceExpandedWidgetState();
+  State<PopularPlaceExpandedWidget> createState() =>
+      _PopularPlaceExpandedWidgetState();
 }
 
-class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget> {
+class _PopularPlaceExpandedWidgetState
+    extends State<PopularPlaceExpandedWidget> {
+  bool _isPlaceSaved = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,7 +57,12 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
           // Content section
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 2, bottom: 20),
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 2,
+                bottom: 20,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
@@ -108,10 +117,13 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
                           elevation: 0,
                           backgroundColor: AppTheme.buttonColor,
                           iconColor: AppTheme.buttonTextColor,
-                          textStyle: const TextStyle(color: AppTheme.buttonTextColor),
+                          textStyle: const TextStyle(
+                            color: AppTheme.buttonTextColor,
+                          ),
                           minimumSize: const Size(127, 56),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5)),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -128,7 +140,8 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
                             ),
                             const SizedBox(width: 12),
                             SvgPicture.asset(
-                              "assets/images/arrow-forward.svg", // Consider changing to map icon
+                              "assets/images/arrow-forward.svg",
+                              // Consider changing to map icon
                               width: 15.17,
                               height: 15.17,
                               color: AppTheme.buttonTextColor,
@@ -140,15 +153,26 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
                       Row(
                         children: [
                           FilledButton(
-                            onPressed: SavePlaceService.toggleSavePlace(widget.location.id),
+                            onPressed: () {
+                              SavePlaceService.toggleSavePlace(
+                                widget.location.id,
+                              );
+                              setState(() {
+                                _isPlaceSaved = !_isPlaceSaved;
+                              });
+                            },
                             style: FilledButton.styleFrom(
                               alignment: Alignment.center,
                               elevation: 0,
                               backgroundColor: AppTheme.buttonColor,
                               fixedSize: const Size(56, 56),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
                             ),
-                            child: SvgPicture.asset("assets/images/bookmark_icon.svg"),
+                            child: SvgPicture.asset(
+                              "assets/images/bookmark_icon.svg",
+                            ),
                           ),
                           const SizedBox(width: 12),
                           FilledButton(
@@ -158,9 +182,13 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
                               elevation: 0,
                               backgroundColor: AppTheme.buttonColor,
                               fixedSize: const Size(56, 56),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
                             ),
-                            child: SvgPicture.asset("assets/images/share_icon.svg"),
+                            child: SvgPicture.asset(
+                              "assets/images/share_icon.svg",
+                            ),
                           ),
                         ],
                       ),

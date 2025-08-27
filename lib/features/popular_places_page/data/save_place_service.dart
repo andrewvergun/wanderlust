@@ -4,7 +4,7 @@ import '../../interactive_map_page/data/models/location_data.dart';
 class SavePlaceService {
   static const String _key = 'saved_places';
 
-  static Future<void> toggleSavePlace(int locationId) async {
+  static Future<void> toggleSavePlace(String locationId) async {
     final prefs = await SharedPreferences.getInstance();
     final savedIds = prefs.getStringList(_key) ?? [];
 
@@ -30,7 +30,7 @@ class SavePlaceService {
         .toList();
   }
 
-  static Future<bool> isSaved(int id) async {
+  static Future<bool> isSaved(String id) async {
     final prefs = await SharedPreferences.getInstance();
     final savedIds = prefs.getStringList(_key) ?? [];
     return savedIds.contains(id.toString());
