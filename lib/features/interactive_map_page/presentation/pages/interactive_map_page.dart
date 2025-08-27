@@ -9,8 +9,9 @@ import '../widgets/interactive_map.dart';
 import '../../data/models/location_data.dart';
 
 class InteractiveMapPage extends StatefulWidget {
-  const InteractiveMapPage({super.key});
+  const InteractiveMapPage({super.key, this.selectedLocation});
 
+  final LocationData? selectedLocation; // Add this parameter
   static const String path = 'interactive_map';
 
   @override
@@ -21,6 +22,16 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
   LocationData? selectedLocation;
   bool showLocationDetails = false;
   bool showLocationDetailsExpanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize with the passed location if available
+    if (widget.selectedLocation != null) {
+      selectedLocation = widget.selectedLocation;
+      showLocationDetails = true;
+    }
+  }
 
   void _onLocationSelected(LocationData location) {
     setState(() {
@@ -106,7 +117,6 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
         color: AppTheme.interactiveMapContainerColor,
         borderRadius: BorderRadius.circular(26),
       ),
-
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -202,7 +212,6 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
       decoration: BoxDecoration(
         color: AppTheme.interactiveMapContainerColor,
         borderRadius: BorderRadius.circular(26),
-
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -210,7 +219,7 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
         children: [
           // Image section
           Container(
-            padding: EdgeInsets.all(17),
+            padding: const EdgeInsets.all(17),
             height: 237,
             width: double.infinity,
             child: ClipRRect(
@@ -284,9 +293,8 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
                           elevation: 0,
                           backgroundColor: AppTheme.buttonColor,
                           iconColor: AppTheme.buttonTextColor,
-                          textStyle: TextStyle(color: AppTheme.buttonTextColor),
-                          minimumSize: Size(127, 56),
-
+                          textStyle: const TextStyle(color: AppTheme.buttonTextColor),
+                          minimumSize: const Size(127, 56),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
                         ),
@@ -295,7 +303,7 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Close Map',
                               style: TextStyle(
                                 color: AppTheme.buttonTextColor,
@@ -303,7 +311,7 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(width: 12),
+                            const SizedBox(width: 12),
                             SvgPicture.asset(
                               "assets/images/close_icon.svg",
                               width: 15.17,
@@ -318,26 +326,26 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
                         children: [
                           FilledButton(
                             onPressed: () {},
-                            child: SvgPicture.asset("assets/images/bookmark_icon.svg"),
                             style: FilledButton.styleFrom(
                               alignment: Alignment.center,
                               elevation: 0,
                               backgroundColor: AppTheme.buttonColor,
-                              fixedSize: Size(56, 56),
+                              fixedSize: const Size(56, 56),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                             ),
+                            child: SvgPicture.asset("assets/images/bookmark_icon.svg"),
                           ),
                           const SizedBox(width: 12),
                           FilledButton(
                             onPressed: () {},
-                            child: SvgPicture.asset("assets/images/share_icon.svg"),
                             style: FilledButton.styleFrom(
                               alignment: Alignment.center,
                               elevation: 0,
                               backgroundColor: AppTheme.buttonColor,
-                              fixedSize: Size(56, 56),
+                              fixedSize: const Size(56, 56),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                             ),
+                            child: SvgPicture.asset("assets/images/share_icon.svg"),
                           ),
                         ],
                       ),

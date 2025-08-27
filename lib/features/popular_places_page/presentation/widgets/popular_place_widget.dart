@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../common/widgets/forward_button.dart';
 import '../../../interactive_map_page/data/models/location_data.dart';
 import '../../../../config/theme/theme.dart';
-import '../pages/popular_place_expanded_page.dart';
 
 class PopularPlaceWidget extends StatefulWidget {
   const PopularPlaceWidget({super.key, required this.location});
@@ -28,7 +27,6 @@ class _PopularPlaceWidgetState extends State<PopularPlaceWidget> {
           color: AppTheme.interactiveMapContainerColor,
           borderRadius: BorderRadius.circular(26),
         ),
-
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +37,7 @@ class _PopularPlaceWidgetState extends State<PopularPlaceWidget> {
                 height: 123,
                 width: double.infinity,
                 child: Image.network(
-                  widget.location!.imageUrl,
+                  widget.location.imageUrl,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     return Container(
@@ -67,7 +65,7 @@ class _PopularPlaceWidgetState extends State<PopularPlaceWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          widget.location!.name,
+                          widget.location.name,
                           style: const TextStyle(
                             color: AppTheme.white,
                             fontSize: 15,
@@ -81,8 +79,7 @@ class _PopularPlaceWidgetState extends State<PopularPlaceWidget> {
                         Expanded(
                           child: SingleChildScrollView(
                             child: Text(
-                              widget.location!
-                                  .description
+                              widget.location.description
                                   .split('.')
                                   .first +
                                   '.',
@@ -103,7 +100,7 @@ class _PopularPlaceWidgetState extends State<PopularPlaceWidget> {
                     child: ForwardButton(
                       onPressed: () {
                         context.goNamed(
-                          '${PopularPlaceExpandedPage.path}',
+                          'popular_place_expanded',
                           extra: widget.location,
                         );
                       },

@@ -19,7 +19,7 @@ class _PopularPlaceExpandedPageState extends State<PopularPlaceExpandedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: Sidebar(),
+      endDrawer: const Sidebar(),
       body: Stack(
         alignment: Alignment.center,
         children: [
@@ -32,7 +32,7 @@ class _PopularPlaceExpandedPageState extends State<PopularPlaceExpandedPage> {
           SafeArea(
             child: Column(
               children: [
-                Header(isHeaderMin: true, title: 'Popular places'),
+                const Header(isHeaderMin: true, title: 'Popular places'),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),

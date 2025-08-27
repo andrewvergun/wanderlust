@@ -28,7 +28,7 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
         children: [
           // Image section
           Container(
-            padding: EdgeInsets.all(17),
+            padding: const EdgeInsets.all(17),
             height: 237,
             width: double.infinity,
             child: ClipRRect(
@@ -94,18 +94,21 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Close button
+                      // Open Map button
                       FilledButton(
                         onPressed: () {
-                          context.pop(); // Navigate back
+                          context.goNamed(
+                            'interactive_map',
+                            extra: widget.location,
+                          );
                         },
                         style: FilledButton.styleFrom(
                           alignment: Alignment.center,
                           elevation: 0,
                           backgroundColor: AppTheme.buttonColor,
                           iconColor: AppTheme.buttonTextColor,
-                          textStyle: TextStyle(color: AppTheme.buttonTextColor),
-                          minimumSize: Size(127, 56),
+                          textStyle: const TextStyle(color: AppTheme.buttonTextColor),
+                          minimumSize: const Size(127, 56),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
                         ),
@@ -114,7 +117,7 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Open Map',
                               style: TextStyle(
                                 color: AppTheme.buttonTextColor,
@@ -122,9 +125,9 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(width: 12),
+                            const SizedBox(width: 12),
                             SvgPicture.asset(
-                              "assets/images/arrow-forward.svg",
+                              "assets/images/arrow-forward.svg", // Consider changing to map icon
                               width: 15.17,
                               height: 15.17,
                               color: AppTheme.buttonTextColor,
@@ -137,26 +140,26 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
                         children: [
                           FilledButton(
                             onPressed: () {},
-                            child: SvgPicture.asset("assets/images/bookmark_icon.svg"),
                             style: FilledButton.styleFrom(
                               alignment: Alignment.center,
                               elevation: 0,
                               backgroundColor: AppTheme.buttonColor,
-                              fixedSize: Size(56, 56),
+                              fixedSize: const Size(56, 56),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                             ),
+                            child: SvgPicture.asset("assets/images/bookmark_icon.svg"),
                           ),
                           const SizedBox(width: 12),
                           FilledButton(
                             onPressed: () {},
-                            child: SvgPicture.asset("assets/images/share_icon.svg"),
                             style: FilledButton.styleFrom(
                               alignment: Alignment.center,
                               elevation: 0,
                               backgroundColor: AppTheme.buttonColor,
-                              fixedSize: Size(56, 56),
+                              fixedSize: const Size(56, 56),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                             ),
+                            child: SvgPicture.asset("assets/images/share_icon.svg"),
                           ),
                         ],
                       ),
