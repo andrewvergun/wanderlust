@@ -6,9 +6,9 @@
 
 ## 🚀 Project Goal
 
-* **Make exploring Germany fun and educational**
-* **Provide an interactive and user-friendly UI**
-* **Learn about landmarks and historical facts**
+* Make exploring Germany fun and educational
+* Provide an interactive and user-friendly UI
+* Learn about landmarks and historical facts
 
 ---
 
