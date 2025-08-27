@@ -19,6 +19,8 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'OpenSans',
         scaffoldBackgroundColor: Colors.black,
+        canvasColor: Colors.black,
+
 
       ),
     );
