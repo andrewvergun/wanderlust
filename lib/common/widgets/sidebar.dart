@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wanderlust/features/about_page/presentation/pages/about_page.dart';
 import 'package:wanderlust/features/interactive_map_page/presentation/pages/interactive_map_page.dart';
+import 'package:wanderlust/features/saved_places_page/pages/saved_places_page.dart';
 import '../../config/theme/theme.dart';
 import '../../features/home_page/presentation/pages/home_page.dart';
 import '../../features/popular_places_page/presentation/pages/popular_places_page.dart';
@@ -17,7 +18,6 @@ class Sidebar extends StatefulWidget {
 class _SidebarState extends State<Sidebar> {
   @override
   Widget build(BuildContext context) {
-
     final String currentRoute = GoRouterState.of(context).uri.toString();
 
     return SafeArea(
@@ -45,16 +45,25 @@ class _SidebarState extends State<Sidebar> {
             _buildMenuItem(
               'Home',
               routeName: HomePage.path,
-              isActive: currentRoute.contains(HomePage.path) || currentRoute == '/',
+              isActive:
+                  currentRoute.contains(HomePage.path) || currentRoute == '/',
             ),
-            _buildMenuItem('Popular places',
+            _buildMenuItem(
+              'Popular places',
               routeName: PopularPlacesPage.path,
-              isActive: currentRoute.contains(PopularPlacesPage.path),),
-            _buildMenuItem('Saved places'),
+              isActive: currentRoute.contains(PopularPlacesPage.path),
+            ),
+            _buildMenuItem(
+              'Saved places',
+              routeName: SavedPlacesPage.path,
+              isActive: currentRoute.contains(SavedPlacesPage.path),
+            ),
             _buildMenuItem('Interesting facts'),
-            _buildMenuItem('Interactive map',
+            _buildMenuItem(
+              'Interactive map',
               routeName: InteractiveMapPage.path,
-              isActive: currentRoute.contains(InteractiveMapPage.path),),
+              isActive: currentRoute.contains(InteractiveMapPage.path),
+            ),
             _buildMenuItem(
               'About app',
               routeName: AboutPage.path,
@@ -80,14 +89,18 @@ class _SidebarState extends State<Sidebar> {
     );
   }
 
-  Widget _buildMenuItem(String title, {bool isActive = false, String? routeName}) {
+  Widget _buildMenuItem(
+    String title, {
+    bool isActive = false,
+    String? routeName,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).pop();
           if (routeName != null) {
-            context.goNamed(routeName);
+            context.pushNamed(routeName);
           }
         },
         child: Stack(

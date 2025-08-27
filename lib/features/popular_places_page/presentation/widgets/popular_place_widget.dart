@@ -99,7 +99,7 @@ class _PopularPlaceWidgetState extends State<PopularPlaceWidget> {
                     alignment: Alignment.center,
                     child: ForwardButton(
                       onPressed: () {
-                        context.goNamed(
+                        context.pushNamed(
                           'popular_place_expanded',
                           extra: widget.location,
                         );

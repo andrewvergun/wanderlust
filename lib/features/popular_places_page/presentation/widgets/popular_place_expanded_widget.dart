@@ -107,7 +107,7 @@ class _PopularPlaceExpandedWidgetState
                       // Open Map button
                       FilledButton(
                         onPressed: () {
-                          context.goNamed(
+                          context.pushNamed(
                             'interactive_map',
                             extra: widget.location,
                           );
@@ -153,13 +153,11 @@ class _PopularPlaceExpandedWidgetState
                       Row(
                         children: [
                           FilledButton(
-                            onPressed: () {
-                              SavePlaceService.toggleSavePlace(
+                            onPressed: () async {
+                              await SavePlaceService.toggleSavePlace(
                                 widget.location.id,
                               );
-                              setState(() {
-                                _isPlaceSaved = !_isPlaceSaved;
-                              });
+                              setState(() {}); // rebuild to reflect new state
                             },
                             style: FilledButton.styleFrom(
                               alignment: Alignment.center,
@@ -170,10 +168,21 @@ class _PopularPlaceExpandedWidgetState
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
-                            child: SvgPicture.asset(
-                              "assets/images/bookmark_icon.svg",
+                            child: FutureBuilder<bool>(
+                              future: SavePlaceService.isSaved(
+                                widget.location.id,
+                              ),
+                              builder: (context, snapshot) {
+                                final isSaved = snapshot.data ?? false;
+                                return SvgPicture.asset(
+                                  isSaved
+                                      ? "assets/images/bookmark_saved.svg"
+                                      : "assets/images/bookmark_icon.svg",
+                                );
+                              },
                             ),
                           ),
+
                           const SizedBox(width: 12),
                           FilledButton(
                             onPressed: () {},
