@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wanderlust/common/widgets/header.dart';
 import 'package:wanderlust/features/interesting_facts_page/widgets/interesting_fact_button.dart';
+import 'package:wanderlust/features/interesting_facts_page/pages/facts_display_page.dart';
 
 import '../../../common/widgets/sidebar.dart';
 import '../../../config/theme/theme.dart';
@@ -15,6 +17,13 @@ class InterestingFactsPage extends StatefulWidget {
 }
 
 class _InterestingFactsPageState extends State<InterestingFactsPage> {
+  void _navigateToCategory(String categoryName) {
+    context.pushNamed(
+      FactsDisplayPage.path,
+      extra: categoryName,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,21 +41,23 @@ class _InterestingFactsPageState extends State<InterestingFactsPage> {
             child: Column(
               children: [
                 Header(isHeaderMin: true, title: 'Interesting facts'),
-                SizedBox(height: 54),
-                Image.asset(
-                  "assets/images/attention_mark.png",
-                  width: 241,
-                  height: 278,
-                  fit: BoxFit.cover,
+                SizedBox(height: 20), // reduce height to avoid overflow
+                Flexible(
+                  flex: 4,
+                  child: Image.asset(
+                    "assets/images/attention_mark.png",
+                    width: 241,
+                    height: 278,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-
-                Expanded(
+                Flexible(
+                  flex: 5,
                   child: Container(
                     width: double.infinity,
-                    height: 340,
-                    padding: EdgeInsets.all(28),
+                    padding: const EdgeInsets.all(28),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(30),
                         topRight: Radius.circular(30),
                       ),
@@ -57,18 +68,27 @@ class _InterestingFactsPageState extends State<InterestingFactsPage> {
                       children: [
                         Text(
                           'Click on a category and learn the facts.',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: AppTheme.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 23),
-                        InterestingFactButton(title: 'Cultural and traditions facts', onPressed: () {}),
-                        SizedBox(height: 11),
-                        InterestingFactButton(title: 'History and Architecture', onPressed: () {}),
-                        SizedBox(height: 11),
-                        InterestingFactButton(title: 'Nature and Modernity', onPressed: () {}),
+                        const SizedBox(height: 23),
+                        InterestingFactButton(
+                          title: 'Cultural and traditions facts',
+                          onPressed: () => _navigateToCategory('Culture and Traditions'),
+                        ),
+                        const SizedBox(height: 11),
+                        InterestingFactButton(
+                          title: 'History and Architecture',
+                          onPressed: () => _navigateToCategory('History and Architecture'),
+                        ),
+                        const SizedBox(height: 11),
+                        InterestingFactButton(
+                          title: 'Nature and Modernity',
+                          onPressed: () => _navigateToCategory('Nature and Modernity'),
+                        ),
                       ],
                     ),
                   ),

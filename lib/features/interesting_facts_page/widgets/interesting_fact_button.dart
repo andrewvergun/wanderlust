@@ -12,7 +12,7 @@ class InterestingFactButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: FilledButton.styleFrom(
         alignment: Alignment.center,
         elevation: 0,
@@ -24,24 +24,22 @@ class InterestingFactButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
         ),
+        minimumSize: const Size(349, 56),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppTheme.buttonTextColor,
               fontSize: 13,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(width: 12),
           SvgPicture.asset(
             "assets/images/arrow-forward.svg",
-            // Consider changing to map icon
             width: 15.17,
             height: 15.17,
             color: AppTheme.buttonTextColor,
@@ -51,3 +49,4 @@ class InterestingFactButton extends StatelessWidget {
     );
   }
 }
+
