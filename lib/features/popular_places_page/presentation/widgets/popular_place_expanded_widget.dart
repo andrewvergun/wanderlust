@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wanderlust/features/popular_places_page/data/save_place_service.dart';
 import '../../../../config/theme/theme.dart';
 import '../../../interactive_map_page/data/models/location_data.dart';
 
@@ -139,7 +140,7 @@ class _PopularPlaceExpandedWidgetState extends State<PopularPlaceExpandedWidget>
                       Row(
                         children: [
                           FilledButton(
-                            onPressed: () {},
+                            onPressed: SavePlaceService.toggleSavePlace(widget.location.id),
                             style: FilledButton.styleFrom(
                               alignment: Alignment.center,
                               elevation: 0,
