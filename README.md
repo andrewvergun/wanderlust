@@ -42,7 +42,3 @@ flutter run -d android   # Android
 flutter run -d ios       # iOS
 flutter run -d chrome    # Web
 ```
-
----
-
-If you want, I can also **add a “Technologies” section with bold names and emojis** to make it more visually appealing for GitHub. Do you want me to do that?
