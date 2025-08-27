@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wanderlust/common/animations/text_animation.dart';
 import 'package:wanderlust/common/widgets/header.dart';
 import 'package:wanderlust/common/widgets/header_button.dart';
 import 'package:share_plus/share_plus.dart';
@@ -69,7 +70,7 @@ class _AboutPageState extends State<AboutPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          BlurTextAnimation(text:
                             'This is your interactive guide to Germany.\nInside you will find unique places, interesting facts and the opportunity to create your own routes. Collect your favorite locations, discover new ones every day and travel in your own style.',
                             style: TextStyle(
                               color: AppTheme.white,

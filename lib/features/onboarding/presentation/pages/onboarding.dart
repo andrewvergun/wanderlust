@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wanderlust/common/animations/text_animation.dart';
 import 'package:wanderlust/config/theme/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -132,7 +133,7 @@ Widget _buildOnBoardingPage({
           mainAxisSize: MainAxisSize.min,
           children: [
             if (title != null && title.isNotEmpty)
-              Text(
+              BlurTextAnimation(text:
                 title,
                 style: TextStyle(
                   color: AppTheme.white,
@@ -142,7 +143,7 @@ Widget _buildOnBoardingPage({
               ),
             const SizedBox(height: 2),
             if (subtitle != null && subtitle.isNotEmpty)
-              Text(
+              BlurTextAnimation(text:
                 subtitle,
                 style: TextStyle(
                   color: AppTheme.white,
@@ -152,7 +153,7 @@ Widget _buildOnBoardingPage({
               ),
             const SizedBox(height: 18),
             if (description != null && description.isNotEmpty)
-              Text(
+              BlurTextAnimation(text:
                 description,
                 style: TextStyle(
                   color: AppTheme.white,

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanderlust/features/about_page/presentation/pages/about_page.dart';
@@ -10,6 +11,7 @@ import 'package:wanderlust/features/popular_places_page/presentation/pages/popul
 import 'package:wanderlust/features/saved_places_page/pages/saved_places_page.dart';
 import '../../features/interactive_map_page/data/models/location_data.dart';
 import '../../features/popular_places_page/presentation/pages/popular_place_expanded_page.dart';
+import '../../common/animations/page_transition.dart';
 
 final router = GoRouter(
   initialLocation: '/${OnboardingPage.path}',
@@ -17,55 +19,82 @@ final router = GoRouter(
     GoRoute(
       name: OnboardingPage.path,
       path: '/${OnboardingPage.path}',
-      builder: (context, state) => const OnboardingPage(),
+      pageBuilder: (context, state) => buildFadeThroughPage(
+        child: const OnboardingPage(),
+        state: state,
+      ),
     ),
     GoRoute(
       name: HomePage.path,
       path: '/${HomePage.path}',
-      builder: (context, state) => const HomePage(),
+      pageBuilder: (context, state) => buildFadeThroughPage(
+        child: const HomePage(),
+        state: state,
+      ),
     ),
     GoRoute(
       name: AboutPage.path,
       path: '/${AboutPage.path}',
-      builder: (context, state) => const AboutPage(),
+      pageBuilder: (context, state) => buildFadeThroughPage(
+        child: const AboutPage(),
+        state: state,
+      ),
     ),
     GoRoute(
       name: InteractiveMapPage.path,
       path: '/${InteractiveMapPage.path}',
-      builder: (context, state) {
+      pageBuilder: (context, state) {
         final LocationData? selectedLocation = state.extra as LocationData?;
-        return InteractiveMapPage(selectedLocation: selectedLocation);
+        return buildFadeThroughPage(
+          child: InteractiveMapPage(selectedLocation: selectedLocation),
+          state: state,
+        );
       },
     ),
     GoRoute(
       name: PopularPlacesPage.path,
       path: '/${PopularPlacesPage.path}',
-      builder: (context, state) => const PopularPlacesPage(),
+      pageBuilder: (context, state) => buildFadeThroughPage(
+        child: const PopularPlacesPage(),
+        state: state,
+      ),
     ),
     GoRoute(
       name: 'popular_place_expanded',
       path: '/${PopularPlaceExpandedPage.path}',
-      builder: (context, state) {
+      pageBuilder: (context, state) {
         final LocationData location = state.extra as LocationData;
-        return PopularPlaceExpandedPage(location: location);
+        return buildFadeThroughModalPage(
+          child: PopularPlaceExpandedPage(location: location),
+          state: state,
+        );
       },
     ),
     GoRoute(
       name: SavedPlacesPage.path,
       path: '/${SavedPlacesPage.path}',
-      builder: (context, state) => const SavedPlacesPage(),
+      pageBuilder: (context, state) => buildFadeThroughPage(
+        child: const SavedPlacesPage(),
+        state: state,
+      ),
     ),
     GoRoute(
       name: InterestingFactsPage.path,
       path: '/${InterestingFactsPage.path}',
-      builder: (context, state) => const InterestingFactsPage(),
+      pageBuilder: (context, state) => buildFadeThroughPage(
+        child: const InterestingFactsPage(),
+        state: state,
+      ),
     ),
     GoRoute(
       name: FactsDisplayPage.path,
       path: '/${FactsDisplayPage.path}',
-      builder: (context, state) {
+      pageBuilder: (context, state) {
         final String categoryName = state.extra as String;
-        return FactsDisplayPage(categoryName: categoryName);
+        return buildFadeThroughPage(
+          child: FactsDisplayPage(categoryName: categoryName),
+          state: state,
+        );
       },
     ),
   ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../common/animations/text_animation.dart';
 import '../../../../common/widgets/forward_button.dart';
 import '../../../interactive_map_page/data/models/location_data.dart';
 import '../../../../config/theme/theme.dart';
@@ -64,21 +65,22 @@ class _PopularPlaceWidgetState extends State<PopularPlaceWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
+                        BlurTextAnimation(text:
                           widget.location.name,
                           style: const TextStyle(
                             color: AppTheme.white,
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+
+
                         ),
                         const SizedBox(height: 6),
                         // Description
                         Expanded(
                           child: SingleChildScrollView(
-                            child: Text(
+                            child: BlurTextAnimation(text:
                               widget.location.description
                                   .split('.')
                                   .first +

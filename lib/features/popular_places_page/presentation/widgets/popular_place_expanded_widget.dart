@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wanderlust/common/animations/text_animation.dart';
 import 'package:wanderlust/features/popular_places_page/data/save_place_service.dart';
 import '../../../../config/theme/theme.dart';
 import '../../../interactive_map_page/data/models/location_data.dart';
@@ -68,7 +69,7 @@ class _PopularPlaceExpandedWidgetState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // Coordinates
-                  Text(
+                  BlurTextAnimation(text:
                     'Coordinates: ${widget.location.coordinates}',
                     style: const TextStyle(
                       color: AppTheme.buttonColor,
@@ -78,7 +79,7 @@ class _PopularPlaceExpandedWidgetState
                   ),
                   const SizedBox(height: 5),
                   // Title
-                  Text(
+                  BlurTextAnimation(text:
                     widget.location.name,
                     style: const TextStyle(
                       color: Colors.white,
@@ -90,7 +91,7 @@ class _PopularPlaceExpandedWidgetState
                   // Description
                   Flexible(
                     child: SingleChildScrollView(
-                      child: Text(
+                      child: BlurTextAnimation(text:
                         widget.location.description,
                         style: const TextStyle(
                           color: AppTheme.white,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wanderlust/common/animations/text_animation.dart';
 import 'package:wanderlust/common/widgets/forward_button.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../../../common/widgets/header.dart';
@@ -154,21 +155,21 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        selectedLocation!.name,
+                      BlurTextAnimation(
+                        text:selectedLocation!.name,
                         style: const TextStyle(
                           color: AppTheme.white,
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+
                       ),
                       const SizedBox(height: 6),
                       // Description
                       Expanded(
                         child: SingleChildScrollView(
-                          child: Text(
+                          child: BlurTextAnimation(text:
                             selectedLocation!
                                 .description
                                 .split('.')
@@ -249,7 +250,7 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // Coordinates
-                  Text(
+                  BlurTextAnimation(text:
                     'Coordinates: ${selectedLocation!.coordinates}',
                     style: const TextStyle(
                       color: AppTheme.buttonColor,
@@ -259,7 +260,7 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
                   ),
                   const SizedBox(height: 5),
                   // Title
-                  Text(
+                  BlurTextAnimation(text:
                     selectedLocation!.name,
                     style: const TextStyle(
                       color: Colors.white,
@@ -271,7 +272,7 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
                   // Description
                   Flexible(
                     child: SingleChildScrollView(
-                      child: Text(
+                      child: BlurTextAnimation(text:
                         selectedLocation!.description,
                         style: const TextStyle(
                           color: AppTheme.white,

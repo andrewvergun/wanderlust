@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:wanderlust/common/animations/text_animation.dart';
 import 'package:wanderlust/common/widgets/header.dart';
 import '../../../common/widgets/header_button.dart';
 import '../../../common/widgets/sidebar.dart';
@@ -111,7 +112,7 @@ class _FactsDisplayPageState extends State<FactsDisplayPage> {
                         ),
                         const SizedBox(height: 21),
                         Expanded(
-                          child: Text(
+                          child: BlurTextAnimation(text:
                             facts.isNotEmpty ? facts[currentFactIndex] : '',
                             style: const TextStyle(
                               color: AppTheme.white,
