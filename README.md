@@ -1,4 +1,4 @@
-# 🇩🇪 Wanderlust
+# 🌍 Wanderlust
 
 **Wanderlust** is a **Flutter app** that helps users **discover Germany’s sightseeing spots** and **interesting facts**. 🇩🇪✨
 
