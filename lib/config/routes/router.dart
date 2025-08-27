@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanderlust/features/about_page/presentation/pages/about_page.dart';
 import 'package:wanderlust/features/home_page/presentation/pages/home_page.dart';
 import 'package:wanderlust/features/interactive_map_page/presentation/pages/interactive_map_page.dart';
+import 'package:wanderlust/features/interesting_facts_page/pages/interesting_facts_page.dart';
 import 'package:wanderlust/features/onboarding/presentation/pages/onboarding.dart';
 import 'package:wanderlust/features/popular_places_page/presentation/pages/popular_places_page.dart';
 import 'package:wanderlust/features/saved_places_page/pages/saved_places_page.dart';
@@ -52,6 +53,11 @@ final router = GoRouter(
       name: SavedPlacesPage.path,
       path: '/${SavedPlacesPage.path}',
       builder: (context, state) => const SavedPlacesPage(),
+    ),
+    GoRoute(
+      name: InterestingFactsPage.path,
+      path: '/${InterestingFactsPage.path}',
+      builder: (context, state) => const InterestingFactsPage(),
     ),
   ],
   redirect: (context, state) async {

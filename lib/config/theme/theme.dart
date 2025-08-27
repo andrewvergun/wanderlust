@@ -9,6 +9,7 @@ class AppTheme {
   static const Color buttonTextColor = Color(0xFF564300);
   static const Color ellipseGlowColor = Color(0xFFF4D89C);
   static const Color drawerBackgroundColor = Color(0xFF0C2037);
+  static const Color interestingFactsContainerColor = Color(0xFF00081C);
 
   static const GradientBoxBorder borderGradient = GradientBoxBorder(
     gradient: LinearGradient(

@@ -100,11 +100,9 @@ class _PopularPlaceExpandedWidgetState
                     ),
                   ),
                   const SizedBox(height: 30),
-                  // Action buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Open Map button
                       FilledButton(
                         onPressed: () {
                           context.pushNamed(

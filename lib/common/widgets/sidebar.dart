@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wanderlust/features/about_page/presentation/pages/about_page.dart';
 import 'package:wanderlust/features/interactive_map_page/presentation/pages/interactive_map_page.dart';
+import 'package:wanderlust/features/interesting_facts_page/pages/interesting_facts_page.dart';
 import 'package:wanderlust/features/saved_places_page/pages/saved_places_page.dart';
 import '../../config/theme/theme.dart';
 import '../../features/home_page/presentation/pages/home_page.dart';
@@ -58,7 +59,11 @@ class _SidebarState extends State<Sidebar> {
               routeName: SavedPlacesPage.path,
               isActive: currentRoute.contains(SavedPlacesPage.path),
             ),
-            _buildMenuItem('Interesting facts'),
+            _buildMenuItem(
+              'Interesting facts',
+              routeName: InterestingFactsPage.path,
+              isActive: currentRoute.contains(InterestingFactsPage.path),
+            ),
             _buildMenuItem(
               'Interactive map',
               routeName: InteractiveMapPage.path,
