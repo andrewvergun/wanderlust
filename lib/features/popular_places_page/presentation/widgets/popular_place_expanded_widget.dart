@@ -5,6 +5,7 @@ import 'package:wanderlust/common/animations/text_animation.dart';
 import 'package:wanderlust/features/popular_places_page/data/save_place_service.dart';
 import '../../../../config/theme/theme.dart';
 import '../../../interactive_map_page/data/models/location_data.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PopularPlaceExpandedWidget extends StatefulWidget {
   const PopularPlaceExpandedWidget({super.key, required this.location});
@@ -19,6 +20,17 @@ class PopularPlaceExpandedWidget extends StatefulWidget {
 class _PopularPlaceExpandedWidgetState
     extends State<PopularPlaceExpandedWidget> {
   bool _isPlaceSaved = false;
+
+  void _shareLocation() {
+    final shareText =
+        '''
+          ${widget.location.name}
+          
+          ${widget.location.description}
+        ''';
+
+    Share.share(shareText);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +81,8 @@ class _PopularPlaceExpandedWidgetState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // Coordinates
-                  BlurTextAnimation(text:
-                    'Coordinates: ${widget.location.coordinates}',
+                  BlurTextAnimation(
+                    text: 'Coordinates: ${widget.location.coordinates}',
                     style: const TextStyle(
                       color: AppTheme.buttonColor,
                       fontSize: 12,
@@ -79,8 +91,8 @@ class _PopularPlaceExpandedWidgetState
                   ),
                   const SizedBox(height: 5),
                   // Title
-                  BlurTextAnimation(text:
-                    widget.location.name,
+                  BlurTextAnimation(
+                    text: widget.location.name,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15,
@@ -91,8 +103,8 @@ class _PopularPlaceExpandedWidgetState
                   // Description
                   Flexible(
                     child: SingleChildScrollView(
-                      child: BlurTextAnimation(text:
-                        widget.location.description,
+                      child: BlurTextAnimation(
+                        text: widget.location.description,
                         style: const TextStyle(
                           color: AppTheme.white,
                           fontSize: 12,
@@ -184,7 +196,7 @@ class _PopularPlaceExpandedWidgetState
 
                           const SizedBox(width: 12),
                           FilledButton(
-                            onPressed: () {},
+                            onPressed: _shareLocation,
                             style: FilledButton.styleFrom(
                               alignment: Alignment.center,
                               elevation: 0,

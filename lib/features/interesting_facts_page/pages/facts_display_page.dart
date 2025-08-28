@@ -114,6 +114,7 @@ class _FactsDisplayPageState extends State<FactsDisplayPage> {
                         Expanded(
                           child: BlurTextAnimation(text:
                             facts.isNotEmpty ? facts[currentFactIndex] : '',
+                            key: ValueKey(currentFactIndex),
                             style: const TextStyle(
                               color: AppTheme.white,
                               fontSize: 24,
